@@ -44,25 +44,30 @@ def detect():
 
 @app.route("/upload", methods=["POST"])
 def upload_image():
-    image_data = request.data # Get Base64 string from POST
-    if not image_data:
-        return "No image data received", 400
-
-    try:
-        # Decode and save image
-        with open("upload.jpg", "wb") as f:
-            f.write(base64.b64decode(image_data))
-            return jsonify({
-             "image": image_data,
+    return jsonify({
+             "image": 'image',
              "head_detected": 'two',
              "request": request
               })
-    except Exception as e:
-           return jsonify({
-          "image": image_data,
-          "head_detected": 'one',
-          "request": request
-           }) 
+    # image_data = request.data # Get Base64 string from POST
+    # if not image_data:
+    #     return "No image data received", 400
+
+    # try:
+    #     # Decode and save image
+    #     with open("upload.jpg", "wb") as f:
+    #         f.write(base64.b64decode(image_data))
+    #         return jsonify({
+    #          "image": image_data,
+    #          "head_detected": 'two',
+    #          "request": request
+    #           })
+    # except Exception as e:
+    #        return jsonify({
+    #       "image": image_data,
+    #       "head_detected": 'one',
+    #       "request": request
+    #        }) 
 
 
     
