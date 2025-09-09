@@ -44,7 +44,7 @@ def detect():
 
 @app.route("/upload", methods=["POST"])
 def upload_image():
-    image_data = request.form.get('image')  # Get Base64 string from POST
+    image_data = request.data # Get Base64 string from POST
     if not image_data:
         return "No image data received", 400
 
