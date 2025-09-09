@@ -41,7 +41,7 @@ def detect():
         "head_detected": detected
     })
 
-@app.route("/upload", methods=["POST"])
+@app.route("/upload", methods=["GET"])
 def image_uplaod():
      return jsonify({
         "image": request,
