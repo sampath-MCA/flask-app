@@ -42,18 +42,22 @@ def detect():
     })
 
 @app.route("/upload", methods=["POST"])
-def image_uplaod():
-      image_data = request.form.get('image')  # Get Base64 string from POST
-      if not image_data:
-        return "No image data received", 400
+def upload_image():
+    data = request.get_json()
+    image_b64 = data.get("image")
 
-      try:
-        # Decode and save image
-        with open("upload.jpg", "wb") as f:
-            f.write(base64.b64decode(image_data))
-        return "Image received", 200
-      except Exception as e:
-        return f"Error: {str(e)}", 500
+    if not image_b64:
+        return jsonify({"error": "No image provided"}), 400
+
+    try:
+        image_data = base64.b64decode(image_b64)
+        save_path = "received.jpg"
+        with open(save_path, "wb") as f:
+            f.write(image_data)
+        return jsonify({"message": "Image saved successfully", "path": save_path}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 
     
 if __name__ == "__main__":
