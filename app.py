@@ -44,7 +44,7 @@ def detect():
 @app.route("/upload", methods=["GET"])
 def image_uplaod():
      return jsonify({
-        "image": request,
+        "image": 'dd',
         "head_detected": 'ss'
     }) 
     # image_data = request.data  # Get Base64 string from POST
