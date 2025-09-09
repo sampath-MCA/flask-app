@@ -41,5 +41,12 @@ def detect():
         "head_detected": detected
     })
 
+@app.route("/upload", methods=["GET"])
+def upload_image():
+    return jsonify({
+        "image": 'success',
+        "head_detected": 'success
+    })
+    
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000, debug=True)
