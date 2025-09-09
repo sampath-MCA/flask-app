@@ -52,17 +52,17 @@ def upload_image():
         # Decode and save image
         with open("upload.jpg", "wb") as f:
             f.write(base64.b64decode(image_data))
-         return jsonify({
-        "image": image_data,
-        "head_detected": 'two',
-        "request": request
-        })
+            return jsonify({
+             "image": image_data,
+             "head_detected": 'two',
+             "request": request
+              })
         except Exception as e:
-         return jsonify({
-        "image": image_data,
-        "head_detected": 'one',
-         "request": request
-        }) 
+           return jsonify({
+          "image": image_data,
+          "head_detected": 'one',
+          "request": request
+           }) 
 
 
     
