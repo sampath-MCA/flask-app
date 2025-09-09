@@ -56,13 +56,13 @@ def upload_image():
         "image": image_data,
         "head_detected": 'two',
         "request": request
-    })
-    except Exception as e:
+        })
+        except Exception as e:
          return jsonify({
         "image": image_data,
         "head_detected": 'one',
          "request": request
-    }) 
+        }) 
 
 
     
