@@ -2,13 +2,15 @@ from flask import Flask, jsonify, request
 from ultralytics import YOLO
 import math
 import base64
-
+from datetime import datetime
+import uuid
 # Initialize Flask app
 app = Flask(__name__)
 
 # Load YOLOv8 pose model
 model = YOLO("yolov8n-pose.pt")
-
+UPLOAD_FOLDER = "uploads"
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 def distance(p1, p2):
     return math.hypot(p1[0] - p2[0], p1[1] - p2[1])
 
@@ -44,17 +46,26 @@ def detect():
 
 @app.route("/upload", methods=["POST"])
 def upload_image():
-    image_data = request.form.get('image')  # Get Base64 string from POST
-    if not image_data:
-        return "No image data received", 400
-
     try:
-        # Decode and save image
-        with open("upload.jpg", "wb") as f:
-            f.write(base64.b64decode(image_data))
-        return "Image received", 200
-    except Exception as e:
-        return f"Error: {str(e)}", 500
+        b64_string = request.form.get("image")
+        if not b64_string:
+            return {"status": "error", "message": "No image received"}, 400
+
+        # Decode base64 → binary JPEG
+        img_data = base64.b64decode(b64_string)
+
+        # Unique filename (timestamp + random ID)
+        filename = datetime.now().strftime("%Y%m%d_%H%M%S") + "_" + str(uuid.uuid4().hex)[:8] + ".jpg"
+        filepath = os.path.join(UPLOAD_FOLDER, filename)
+
+        # Save file
+        with open(filepath, "wb") as f:
+            f.write(img_data)
+
+        return {"status": "ok", "file": filename}, 200
+
+      except Exception as e:
+        return {"status": "error", "message": str(e)}, 500
 
 
     
