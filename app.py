@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 from ultralytics import YOLO
 import math
+import base64
 
 # Initialize Flask app
 app = Flask(__name__)
