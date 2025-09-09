@@ -45,7 +45,7 @@ def detect():
 def upload_image():
     return jsonify({
         "image": 'success',
-        "head_detected": 'success
+        "head_detected": 'success'
     })
     
 if __name__ == "__main__":
