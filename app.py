@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from ultralytics import YOLO
 import math
 
@@ -41,23 +41,20 @@ def detect():
         "head_detected": detected
     })
 
-@app.route("/upload", methods=["GET"])
+@app.route("/upload", methods=["POST"])
 def image_uplaod():
-     return jsonify({
-        "image": 'dd',
-        "head_detected": 'ss'
-    }) 
-    # image_data = request.data  # Get Base64 string from POST
-    # if not image_data:
-    #     return "No image data received", 400
+      image_data = request.form.get('image')  # Get Base64 string from POST
+    if not image_data:
+        return "No image data received", 400
 
-    # try:
-    #     # Decode and save image
-    #     with open("upload.jpg", "wb") as f:
-    #         f.write(base64.b64decode(image_data))
-    #     return "Image received", 200
-    # except Exception as e:
-    #     return f"Error: {str(e)}", 500
+    try:
+        # Decode and save image
+        with open("upload.jpg", "wb") as f:
+            f.write(base64.b64decode(image_data))
+        return "Image received", 200
+    except Exception as e:
+        return f"Error: {str(e)}", 500
+
     
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000, debug=True)
