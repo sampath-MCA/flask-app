@@ -44,11 +44,8 @@ def detect():
 
 @app.route("/upload", methods=["POST"])
 def upload_image():
-    return jsonify({
-             "image": 'image',
-             "head_detected": 'two',
-             "request": request
-              })
+    return request
+
     # image_data = request.data # Get Base64 string from POST
     # if not image_data:
     #     return "No image data received", 400
