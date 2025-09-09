@@ -64,7 +64,7 @@ def upload_image():
 
         return {"status": "ok", "file": filename}, 200
 
-      except Exception as e:
+    except Exception as e:
         return {"status": "error", "message": str(e)}, 500
 
 
