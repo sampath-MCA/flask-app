@@ -114,7 +114,7 @@ def upload_image():
         json.dump(data, f, indent=4)
     if(chunkNo == 'last'):
        return mergeFile(newFolder,user)
-   return 'hi'
+    return 'hi'
 
 
     
