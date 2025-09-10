@@ -90,7 +90,7 @@ def upload_image():
     print(id)
     print(index)
     print(chunkNo)
-   return 'hi'
+    return 'hi'
    
 
     data = {
