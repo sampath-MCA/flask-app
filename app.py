@@ -82,7 +82,6 @@ def detect():
 def upload_image():
     data = request.get_json(silent=True) or {}
     print(data)
-    return 'ji'
     user = request.args.get('user')
     id = request.args.get('id')
     chunkNo = request.args.get('chunkNo')
