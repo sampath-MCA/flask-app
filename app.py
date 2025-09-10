@@ -82,13 +82,16 @@ def detect():
 @app.route('/upload', methods=['POST'])
 def upload_image():
     data = request.get_json(silent=True) or {}
-    print(data)
     user = request.args.get('user')
     id = request.args.get('id')
     chunkNo = request.args.get('chunkNo')
     index = request.args.get('index')
-
+    print(user)
+    print(id)
+    print(index)
     print(chunkNo)
+   return 'hi'
+   
 
     data = {
         "base": data
