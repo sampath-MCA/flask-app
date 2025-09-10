@@ -47,26 +47,10 @@ def detect():
 
 @app.route("/upload", methods=["POST"])
 def upload_image():
-    try:
-        b64_string = request.form.get("image")
-        if not b64_string:
-            return {"status": "error", "message": "No image received"}, 400
-
-        # Decode base64 → binary JPEG
-        img_data = base64.b64decode(b64_string)
-
-        # Unique filename (timestamp + random ID)
-        filename = datetime.now().strftime("%Y%m%d_%H%M%S") + "_" + str(uuid.uuid4().hex)[:8] + ".jpg"
-        filepath = os.path.join(UPLOAD_FOLDER, filename)
-
-        # Save file
-        with open(filepath, "wb") as f:
-            f.write(img_data)
-
-        return {"status": "ok", "file": filename}, 200
-
-    except Exception as e:
-        return {"status": "error", "message": str(e)}, 500
+    return jsonify({
+           "mage": image_path,
+           "head_detected": detected
+           })
 
 
     
