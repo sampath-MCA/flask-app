@@ -50,6 +50,7 @@ def upload_image():
     print('hi')
     data = request.get_json(silent=True) or {}
     print(data)
+    return 'hi'
 
 
     
