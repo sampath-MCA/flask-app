@@ -48,7 +48,7 @@ def detect():
 @app.route("/upload", methods=["POST"])
 def upload_image():
     print('hi')
-    data = request.get_json(silents=true) or {}
+    data = request.get_json(silents=True) or {}
     print(data)
 
 
