@@ -48,8 +48,8 @@ def detect():
 @app.route("/upload", methods=["POST"])
 def upload_image():
     return jsonify({
-           "mage": image_path,
-           "head_detected": detected
+           "mage": 's',
+           "head_detected": 'ss'
            })
 
 
