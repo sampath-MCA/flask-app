@@ -93,41 +93,41 @@ def upload_image():
         return Response("OK", status=200)
      else:
         return Response("No data received", status=400)
-    #return 'hi'
-    data = request.get_json(silent=True) or {}
-    user = request.args.get('user')
-    id = request.args.get('id')
-    chunkNo = request.args.get('chunkNo')
-    index = request.args.get('index')
-    print(user)
-    print(id)
-    print(index)
-    print(chunkNo)
+    # #return 'hi'
+    # data = request.get_json(silent=True) or {}
+    # user = request.args.get('user')
+    # id = request.args.get('id')
+    # chunkNo = request.args.get('chunkNo')
+    # index = request.args.get('index')
+    # print(user)
+    # print(id)
+    # print(index)
+    # print(chunkNo)
   
    
 
-    data = {
-        "base": data
-    }
+    # data = {
+    #     "base": data
+    # }
 
-    newFolder = f"{user}_{id}"
-    path = os.path.join(UPLOAD_FOLDER, newFolder)
-    os.makedirs(path, exist_ok=True)
+    # newFolder = f"{user}_{id}"
+    # path = os.path.join(UPLOAD_FOLDER, newFolder)
+    # os.makedirs(path, exist_ok=True)
 
-    userPath = os.path.join(UPLOAD_FOLDER, user)
-    os.makedirs(userPath, exist_ok=True)
+    # userPath = os.path.join(UPLOAD_FOLDER, user)
+    # os.makedirs(userPath, exist_ok=True)
    
-    # Save JSON file inside the folder
-    filename = f"{index}_{user}_{id}_chunk{chunkNo}.json"
-    #print(filename)
-    filepath = os.path.join(path, filename)
+    # # Save JSON file inside the folder
+    # filename = f"{index}_{user}_{id}_chunk{chunkNo}.json"
+    # #print(filename)
+    # filepath = os.path.join(path, filename)
   
     
-    with open(filepath, "w") as f:
-        json.dump(data, f, indent=4)
-    if(chunkNo == 'last'):
-       return mergeFile(newFolder,user)
-    return 'hi'
+    # with open(filepath, "w") as f:
+    #     json.dump(data, f, indent=4)
+    # if(chunkNo == 'last'):
+    #    return mergeFile(newFolder,user)
+    # return 'hi'
 
 
     
