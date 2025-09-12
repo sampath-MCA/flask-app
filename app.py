@@ -91,7 +91,7 @@ def upload_image():
 
         print(f"[INFO] Saved image: {filepath}")
         return Response("OK", status=200)
-    else:
+     else:
         return Response("No data received", status=400)
     #return 'hi'
     data = request.get_json(silent=True) or {}
