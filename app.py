@@ -81,6 +81,7 @@ def detect():
 
 @app.route('/upload', methods=['POST'])
 def upload_image():
+    return 'hi'
     data = request.get_json(silent=True) or {}
     user = request.args.get('user')
     id = request.args.get('id')
