@@ -81,18 +81,13 @@ def detect():
 
 @app.route('/upload', methods=['POST'])
 def upload_image():
-     if request.data:
-        # Save with timestamp filename
-        filename = datetime.now().strftime("%Y%m%d_%H%M%S") + ".jpg"
+      if request.data:
+        filename = datetime.now().strftime("%Y%m%d_%H%M%S.jpg")
         filepath = os.path.join(UPLOAD_FOLDER, filename)
-
         with open(filepath, "wb") as f:
             f.write(request.data)
-
-        print(f"[INFO] Saved image: {filepath}")
-        return Response("OK", status=200)
-     else:
-        return Response("No data received", status=400)
+        return "OK", 200
+    return "No image", 400
     # #return 'hi'
     # data = request.get_json(silent=True) or {}
     # user = request.args.get('user')
