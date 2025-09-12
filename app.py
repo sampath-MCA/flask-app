@@ -87,7 +87,7 @@ def upload_image():
         with open(filepath, "wb") as f:
             f.write(request.data)
         return "OK", 200
-    return "No image", 400
+      return "No image", 400
     # #return 'hi'
     # data = request.get_json(silent=True) or {}
     # user = request.args.get('user')
